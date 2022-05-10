@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>App CD Genovés</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="./css/estilo.css" rel="stylesheet" type="text/css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+</head>
+<body>
+	<header>
+		<h1>CD Genovés</h1>
+		<img src="./img/escudo.png" alt="Escudo" title="Escudo" class="escudo">
+	</header>
+	<div id="menu_navegacion">
+		<nav class="navegacion">
+			<div class="navegacion_menu">
+				<a href="#" class="enlace_menu"><i class="fa fa-bars"></i></a>
+				<ul class="navegacion_menu_lista">
+					<li><a id="inicio" class="active" href="index.html">Inicio</a></li>
+					<li><a id="estadisticas" href="estadisticas.html">Estadísticas</a></li>
+					<li><a id="convocatoria" href="convocatoria.html">Convocatoria</a></li>
+					<li><a id="resultado" href="resultado.html">Resultado</a></li>
+				</ul>
+			</div>
+			<div>
+				<button type="button" id="login">Login</button>
+				<button type="button" id="registro">Registro</button>
+			</div>
+			<div class="navegacion_claro_oscuro">
+				<a href="#" id="perfil"><img src="./img/perfil.jpg" alt="Perfil" title="Perfil" class="perfil"></a>
+				<div class="claro_oscuro">
+					<button type="button" id="btn_modo_claro"><i class="fa fa-sun"></i>&nbsp;Modo claro</button>
+					<button type="button" id="btn_modo_oscuro"><i class="fa fa-moon"></i>&nbsp;Modo oscuro</button>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<script type="text/javascript">
+		let nombre_usuario = location.href.split("=")[1];
+		if (nombre_usuario!="" && nombre_usuario!=null) {
+			$("#inicio").attr("href",'index.html?usuario='+nombre_usuario);
+			$("#estadisticas").attr("href",'estadisticas.html?usuario='+nombre_usuario);
+			$("#convocatoria").attr("href",'convocatoria.html?usuario='+nombre_usuario);
+			$("#resultado").attr("href",'resultado.html?usuario='+nombre_usuario);
+			$("#perfil").attr("href",'perfil.html?usuario='+nombre_usuario);
+		}
+	</script>
+	<main>
+		<div id="contenedor">
+			<div class="tarjeta">
+				<div class="titulo_tarjeta">
+					<div><h3>Estadísticas:</h3></div>
+					<div><h3>Bienvenido <span id="nombre_usuar"></span></h3></div>
+				</div>
+				<hr>
+				<div class="contenido_tarjeta">
+					<div id="entrada"></div>
+					<table id="tabla">
+						<thead>
+							<tr>
+								<th><a>Nombre Jugador</a></th>
+								<th><a>Fecha Nacimiento</a></th>
+								<th><a>Partidos</a></th>
+								<th><a>Goles</a></th>
+								<th><a>Asistencias</a></th>
+								<th><a>Puntos</a></th>
+							</tr>
+						</thead>
+						<tbody id="tbody"></tbody>
+					</table>
+					<div style="text-align: center">
+						<button type="button" id="btn_anadir" class="anadir"><i class="fas fa-mouse-pointer"></i> Añadir jugador</button>
+						<button type="button" id="btn_eliminar" class="eliminar"><i class="fas fa-trash"></i> Eliminar jugador</button><br><br>
+					</div>
+					<div id="ana_jug" style="display: none">
+						<p>Introduzca los datos del nuevo jugador:</p>
+						<label for="nombre">Nombre:</label>
+						<input type="text" id="nombre">
+						<label for="fechnac">Fecha de nacimiento:</label>
+						<input type="text" id="fechnac" placeholder="aaaa-mm-dd"><br><br>
+						<button type="button" id="btn_anad" class="aceptar"><i class="fas fa-check"></i> Aceptar</button><br><br>
+					</div>
+					<div id="eli_jug" style="display: none">
+						<p>Elija el nombre del jugador que desea eliminar:</p>
+						<label for="lista_jug">Jugador:</label>
+						<select id="lista_jug"></select><br><br>
+						<button type="button" id="btn_elimin" class="eliminar"><i class="fas fa-trash"></i> Eliminar</button><br><br>
+					</div>
+					<div id="salida"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<nav class="pie">
+			<ul>
+				<li><a href="#">Aviso legal</a></li>
+				<li><a href="#">Política de privacidad</a></li>
+				<li><a href="#">Política de cookies</a></li>
+				<li><a href="#">Contacto</a></li>
+			</ul>
+		</nav>
+		<nav class="pie">
+			<ul>
+				<li><a href="#" title="Facebook"><i class="fab fa-facebook" style="font-size: 50px; color: rgb(66,103,178);"></i></a></li>
+				<li><a href="#" title="Twitter"><i class="fab fa-twitter" style="font-size: 50px; color: rgb(29,161,242);"></i></a></li>
+				<li><a href="#" title="Instagram"><i class="fab fa-instagram" style="font-size: 50px; color: rgb(225,48,108);"></i></a></li>
+				<li><a href="#" title="Pinterest"><i class="fab fa-pinterest" style="font-size: 50px; color: rgb(189,8,28);"></i></a></li>
+			</ul>
+		</nav>
+	</footer>
+</body>
+<script src="js/scriptestadisticas.js"></script>
+</html>

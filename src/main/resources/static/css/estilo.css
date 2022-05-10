@@ -1,0 +1,630 @@
+/*-----Genérico-----*/
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+button {
+	line-height: 1.5;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: transparent;
+	border: 1px solid;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+button:hover {
+	color: #f8f9fa;
+	border-color: #808080;
+	background-color: #808080;
+}
+
+	/*-----Botones-----*/
+
+	.anadir {
+		color: #ffffff;
+		background-color: #408080;
+	}
+	
+	.anadir:hover {
+		color: #f8f9fa;
+		border-color: #333333;
+		background-color: #33a4a4;
+	}
+	
+	.aceptar {
+		color: #ffffff;
+		background-color: #00cc00;
+	}
+	
+	.aceptar:hover {
+		color: #f8f9fa;
+		border-color: #00ff00;
+		background-color: #00ff00;
+	}
+	
+	.eliminar {
+		color: #ffffff;
+		background-color: #d90000;
+	}
+	
+	.eliminar:hover {
+		color: #f8f9fa;
+		border-color: #ff0000;
+		background-color: #ff0000;
+	}
+
+p {
+	text-align: justify;
+}
+
+label {
+	width: 20%;
+	font-weight: bold;
+	display: inline-block;
+}
+
+input[type="text"], input[type="password"] {
+	width: 20%;
+	padding: 3px 10px;
+	border: 1px solid #f6f6f6;
+	border-radius: 3px;
+	background-color: #f6f6f6;
+	margin: 8px 0;
+	display: inline-block;
+}
+
+select {
+	font-size: 16px;
+	width: 50%;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+select:hover, input:hover {
+	border-color: #888;
+}
+
+select:focus, input:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	color: #222;
+	outline: none;
+}
+
+select option {
+	font-weight: normal;
+}
+
+table {
+	font-family: «Lucida Sans Unicode», «Lucida Grande», Sans-Serif;
+	font-size: 12px;
+	margin: 45px 0;
+	width: 100%;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+th {
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background-color: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+
+td {
+	padding: 8px;
+	background-color: #e8edff;
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+}
+
+table:hover td[rowspan], tr:hover td {
+	background-color: #d0dafd;
+	color: #339;
+}
+
+/*-----Encabezado-----*/
+
+header {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	background-image: url('../img/mirandilla.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1 {
+	color: white;
+}
+
+.escudo {
+	width: 70px;
+	height: 70px;
+	border: 0;
+}
+
+/*-----Menu de navegacion-----*/
+
+#menu_navegacion {
+	margin: 0;
+	background-color: #ddd;
+	padding: 0 50px;
+}
+
+.navegacion {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.enlace_menu {
+	display: none;
+}
+
+.navegacion ul {
+	padding-inline-start: 0px;
+	list-style-type: none;
+	overflow: hidden;
+}
+
+.navegacion li {
+	float: left;
+}
+
+.navegacion li a {
+	display: block;
+	padding: 2px 7px 2px 7px;
+	color: #666;
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+.navegacion li a.active:hover {
+	color: #ffffff;
+}
+
+.navegacion li a:hover:not(.active) {
+	color: #ffffff;
+}
+
+.navegacion li a.active {
+	color: #000000;
+}
+
+.perfil {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+	margin: 0 10px 0 0;
+}
+
+.navegacion_claro_oscuro {
+	display: flex;
+	justify-content: space-between;
+}
+
+.claro_oscuro {
+	display: flex;
+	align-items: center;
+	border-radius: 12px;
+	padding: 0.25rem;
+	background-color: #f4f5f7;
+}
+
+#btn_modo_claro, #btn_modo_oscuro {
+	border-radius: 8px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	padding: 0.375rem 1rem;
+	font-weight: 500;
+	border: 1px solid transparent;
+}
+
+#btn_modo_claro {
+	margin: 0 0.25rem 0 0;
+	color: #161e2e;
+	background-color: #ddd;
+}
+
+#btn_modo_oscuro {
+	color: #536387;
+	background-color: transparent;
+	margin-left: -1px;
+}
+
+/*-----Cuerpo-----*/
+
+main {
+	margin: 0;
+}
+
+#contenedor {
+	padding: 32px;
+	background-color: #808080;
+}
+
+.tarjeta {
+	border-radius: 18px;
+	background: white;
+	box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+.titulo_tarjeta {
+	padding: 10px 50px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.contenido_tarjeta {
+	padding: 10px 58px;
+}
+
+#nombre_usuar {
+	color: #039;
+}
+
+	/*-----Slider-----*/
+
+	.slider {
+		width: 95%;
+		margin: auto;
+		overflow: hidden;
+	}
+	
+	.slider ul {
+		display: flex;
+		padding: 0;
+		width: 400%;
+		animation: cambio 20s infinite alternate linear;
+	}
+	
+	.slider li {
+		width: 100%;
+		list-style: none;
+	}
+	
+	.slider img {
+		width: 100%;
+		height: 100%;
+	}
+	
+	@keyframes cambio {
+		0% {margin-left: 0;}
+		20% {margin-left: 0;}
+		25% {margin-left: -100%;}
+		45% {margin-left: -100%;}
+		50% {margin-left: -200%;}
+		70% {margin-left: -200%;}
+		75% {margin-left: -300%;}
+		100% {margin-left: -300%;}
+	}
+
+.contenido_conv {
+	display: flex;
+	justify-content: space-between;
+}
+
+#junto_campo {
+	width: 49%;
+	height: 100%;
+}
+
+#entrada {
+	color: #039;
+}
+
+	/*-----Campo-----*/
+
+	#campo {
+		background-image: url('../img/campo.jpg');
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+		display: inline-grid;
+		width: 49%;
+		text-align: center;
+	}
+
+	#campo img {
+		width: 45px;
+		height: 45px;
+	}
+	
+	.jugador_unico, .jugador_unico p {
+		display: block;
+		text-align: center;
+	}
+	
+	.jugador_grupo {
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	.jugador {
+		display: block;
+		text-align: center;
+		background-color: transparent;
+		perspective: 1000px; 
+	}
+	
+	.jugador_linea {
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	.volteado {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		transition: transform 1s;
+		transform-style: preserve-3d;
+	}
+	
+	.jugador:hover .volteado {
+		transform: rotateY(180deg);
+	}
+	
+	.frontal, .reverso {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		backface-visibility: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.reverso {
+		transform: rotateY(180deg);
+	}
+
+#ana_jug, #eli_jug, #ana_part, #ana_jug p, #eli_jug p, #ana_part p {
+	text-align: center;
+	align-items: center;
+}
+
+#jugadores div {
+	background-color: #f6f6f6;
+}
+
+#jugadores input {
+	width: 15%;
+}
+
+#jugadores label {
+	width: 10%;
+}
+
+.menos, .mas {
+	width: 5%;
+	margin: 0 10px;
+}
+
+.contenido_usuario {
+	align-items: center;
+	color: blue;
+}
+
+/*-----Footer-----*/
+
+footer {
+	bottom: 0;
+	width: 100%;
+	justify-content: center;
+	background-color: #D5D5D5;
+}
+
+.pie {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.pie ul {
+	padding-inline-start: 0px;
+	list-style: none;
+	text-align: center;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.pie li {
+	list-style-type: none;
+	display: inline;
+	text-align: center;
+}
+
+.pie li a {
+	padding: 2px 7px 2px 7px;
+	text-decoration: none;
+	display: block;
+}
+
+/*-----Modo oscuro-----*/
+
+.oscuro {
+	background-color: black!important;
+	color: white!important;
+}
+
+.oscuro_botones {
+	background: #262626!important;
+	color: #dfdfdf!important;
+}
+
+.oscuro_btn_claro {
+	background: transparent!important;
+	color: #4a4a4a!important;
+}
+
+.oscuro_btn_oscuro {
+	background-color: #565656!important;
+	color: #dfdfdf!important;
+}
+
+.oscuro_tabla {
+	background-color: #c0c0c0!important;
+	color: #000000!important;
+}
+
+.oscuro_tabla_cabecera {
+	background-color: #808080!important;
+	border-top: 4px solid #808080;
+}
+
+/*-----Media Queries-----*/
+
+@media screen and (max-width:1025px) {
+	/* big landscape tablets, laptops, and desktops */
+	
+	.navegacion_menu {
+		position: relative;
+		display: inline-block;
+	}
+	.navegacion_menu_lista {
+		display: none;
+		position: absolute;
+		overflow: none;
+		top: 0px;
+		left: 0px;
+	}
+	.navegacion_menu_lista li {
+		display: block;
+		text-decoration: none;
+		border-bottom: 1px solid #f4f5f7;
+		font-size: 12px;
+		float: none;
+	}
+	.navegacion_menu_lista li a {
+		background-color: #ddd;
+	}
+	.navegacion_menu:hover > .navegacion_menu_lista {
+		display:block;
+		background-color: #a7a7a7;
+	}
+	.enlace_menu {
+		display: block;
+		text-decoration: none;
+	}
+	#jugadores input {
+		width: 10%;
+	}
+	
+}
+
+@media screen and (max-width:768px) {
+	/* smartphones, Android phones, landscape iPhone, tablet, landscape iPad, lo-res laptops ands desktops */
+	
+	label {
+		font-size: small;
+	}
+	.contenido_conv {
+		display: block;
+		text-align: center;
+	}
+	#junto_campo {
+		width: 100%;
+	}
+	#campo {
+		width: 100%;
+	}
+
+}
+
+@media screen and (max-width:650px) {
+	/* smartphones, Android phones, landscape iPhone */
+	
+	#login, #registro {
+		font-size: 8px;
+		padding: 5px;
+	}
+	.perfil {
+		width: 25px;
+		height: 25px;
+	}
+	#btn_modo_claro, #btn_modo_oscuro {
+		font-size: 8px;
+		padding: 1px;
+	}
+	.titulo_tarjeta {
+		display: block;
+	}
+	table {
+		width: 100%;
+	}
+	thead {
+		display: none;
+	}
+	table tr {
+		display: block;
+		border-bottom: 5px solid #000000;
+		border-top: 0px!important;
+		margin-bottom: 5px;
+	}
+	tr td:first-child td:second-child {
+		background: #f0f0f0;
+		font-weight: bold;
+		font-size: 1.3em;
+	}
+	tbody td {
+		display: block;
+		text-align: right;
+		border-right: 0px!important;
+	}
+	tbody td:before {
+		content: attr(data-th);
+		float: left;
+		color: #039;
+		font-size: 13px;
+		font-weight: normal;
+	}
+	tbody td:last-child {
+		border-bottom: 0px;
+	}
+	.fila_resultados:nth-child(2n+1) td:first-child {
+		color: white!important;
+		background: #0080ff!important;
+		display: table-cell;
+	}
+	#jugadores label {
+		width: 20%;
+	}
+	#jugadores input {
+		width: 10%;
+	}
+	#jugadores div input:first-child {
+		display: block;
+		width: 50%;
+	}
+	.menos, .mas {
+		margin: 0 5px;
+		padding: 1px;
+		font-size: 8px;
+	}
+
+}
