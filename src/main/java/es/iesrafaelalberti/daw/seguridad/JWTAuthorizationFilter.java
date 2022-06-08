@@ -1,18 +1,16 @@
-/*package es.iesrafaelalberti.daw.seguridad;
+package es.iesrafaelalberti.daw.seguridad;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Hibernate;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,73 +26,65 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	
 	private UsuarioRepositorio usuarioRepositorio;
 	
-	//Obtenemos los datos del usuarioRepositorio aparte para darles seguridad
+	//Obtenemos los datos del usuarioRepositorio en una contexto aparte para darles seguridad
 	public JWTAuthorizationFilter(ApplicationContext applicationContext) {
         this.usuarioRepositorio = applicationContext.getBean(UsuarioRepositorio.class);
     }
 	
-	protected void simpleDemoFilter(HttpServletRequest request) {
-        String encabezado = request.getHeader("Authorization");
-        if(encabezado != null && encabezado.equals("OK"))
-            simpleSpringAuthentication();
-        else
-            SecurityContextHolder.clearContext();
-    }
-	
-	private void simpleSpringAuthentication() {
-        List<String> authoritiesText = new ArrayList<>(Arrays.asList("STATUS_ADMIN"));
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken("lalalala", null, sinLambdas(authoritiesText));
-    }
-	
-	private List<SimpleGrantedAuthority> sinLambdas(List<String> textList) {
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for( String text: textList ) {
-            authorities.add(new SimpleGrantedAuthority(text));
-        }
-        return authorities;
-    }
-	
-	private List<SimpleGrantedAuthority> conLambdas(List<String> textList) {
-        return textList.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-    }
+	private List<SimpleGrantedAuthority> obtenerAutoridades(List<String> textList) {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for( String text: textList ) {
+			authorities.add(new SimpleGrantedAuthority(text));
+		}
+		return authorities;
+	}
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+		throws ServletException, IOException {
+		
 		// TODO Auto-generated method stub
-		if(request.getHeader("Authorization")!=null) {
-            if (!request.getHeader("Authorization").startsWith("Bearer ")) {
-                SecurityContextHolder.clearContext();
-            } else {
-                String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
-                try {
-                    Claims claims = Jwts.parser().setSigningKey("pestillo".getBytes()).parseClaimsJws(jwtToken).getBody();
-                    String nombreUsuario = claims.getSubject();
-                    Usuario usuario = UsuarioRepositorio.findByNombreUsuario(nombreUsuario)
-                            .orElseThrow(EntityNotFoundException::new);
-                    if(!usuario.getToken().equals(jwtToken))
-                        throw new Exception();
-                    //Hibernate.initialize(usuario.getStatus());
-                    setUpSpringAuthentication(usuario);
-                } catch (Exception e) {
-                    SecurityContextHolder.clearContext();
-                }
+		
+		Cookie[] cookies = request.getCookies();
+		//System.out.println(cookies);
+		String jwtToken = "";
+		
+		if(cookies==null) {
+			SecurityContextHolder.clearContext();
+		}
+		else {
+			for(int i = 0; i < cookies.length; i++){
+				if("token".equals(cookies[i].getName()))
+					jwtToken=cookies[i].getValue();
             }
-        } else {
-            SecurityContextHolder.clearContext();
-        }
-        filterChain.doFilter(request, response);
+			//System.out.println(jwtToken);
+			
+			try {
+				if (jwtToken!=null && jwtToken!="") {
+					Claims claims = Jwts.parser().setSigningKey("micodigo".getBytes()).parseClaimsJws(jwtToken).getBody();
+					String nombreUsuario = claims.getSubject();
+					Usuario usuario = usuarioRepositorio.findByNombreUsuario(nombreUsuario);
+						//.orElseThrow(EntityNotFoundException::new);
+					setUpSpringAuthentication(usuario);
+				}
+			} catch (Exception e) {
+				SecurityContextHolder.clearContext();
+			}
+			
+		}
+		
+		filterChain.doFilter(request, response);
 		
 	}
 	
 	private void setUpSpringAuthentication(Usuario usuario) {
-
-        Hibernate.initialize(usuario.getStatus());
-        UsernamePasswordAuthenticationToken auth =
-                new UsernamePasswordAuthenticationToken(usuario, null,
-                            usuario.getStatus());
-        SecurityContextHolder.getContext().setAuthentication(auth);
-    }
+		
+		String status = "ROLE_" + usuario.getStatus().toUpperCase(); 
+		List<String> authoritiesText = new ArrayList<>(Arrays.asList(status));
+		
+		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(usuario, null, obtenerAutoridades(authoritiesText));
+		SecurityContextHolder.getContext().setAuthentication(auth);
+	
+	}
 
 }
-*/

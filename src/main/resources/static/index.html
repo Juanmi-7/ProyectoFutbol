@@ -28,7 +28,7 @@
 				<button type="button" id="registro">Registro</button>
 			</div>
 			<div class="navegacion_claro_oscuro">
-				<a href="#" id="perfil"><img src="./img/perfil.jpg" alt="Perfil" title="Perfil" class="perfil"></a>
+				<a href="perfil.html" id="perfil"><img src="./img/perfil.jpg" alt="Perfil" title="Perfil" class="perfil"></a>
 				<div class="claro_oscuro">
 					<button type="button" id="btn_modo_claro"><i class="fa fa-sun"></i>&nbsp;Modo claro</button>
 					<button type="button" id="btn_modo_oscuro"><i class="fa fa-moon"></i>&nbsp;Modo oscuro</button>
@@ -37,14 +37,34 @@
 		</nav>
 	</div>
 	<script type="text/javascript">
-		let nombre_usuario = location.href.split("=")[1];
-		if (nombre_usuario!="" && nombre_usuario!=null) {
-			$("#inicio").attr("href",'index.html?usuario='+nombre_usuario);
-			$("#estadisticas").attr("href",'estadisticas.html?usuario='+nombre_usuario);
-			$("#convocatoria").attr("href",'convocatoria.html?usuario='+nombre_usuario);
-			$("#resultado").attr("href",'resultado.html?usuario='+nombre_usuario);
-			$("#perfil").attr("href",'perfil.html?usuario='+nombre_usuario);
+		let nombre_usuario = "";
+		let misCookies = document.cookie.split(";");
+		for (i in misCookies) {
+			let busca = misCookies[i].search(token);
+			if (busca > -1) {micookie=misCookies[i]}
 		}
+		var igual = micookie.indexOf("=");
+		var token = micookie.substring(igual+1);
+		
+		if (token!="" && token!=null) {
+			parseJwt(token);
+		}
+		else {
+			nombre_usuario = null;
+		}
+		function parseJwt(token) {
+			var base64Url = token.split('.')[1];
+			var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+			var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+			}).join(''));
+		
+			let usuario = JSON.parse(jsonPayload);
+			for (j in usuario) {
+				if (j=="sub") {nombre_usuario = usuario[j]}
+			}
+		}
+		$("#nombre_usuar").html(nombre_usuario);
 	</script>
 	<main>
 		<div id="contenedor">
@@ -60,7 +80,10 @@
 					Nacimos con el objetivo de consolidar un equipo senior de fútbol sala en la ciudad de Cádiz y
 					con la finalidad de poder practicar este deporte al nivel más alto y de forma segura,
 					a través del espíritu deportivo dentro y fuera del campo, siempre con la mejor actitud.<br><br>
-					A continuación mostramos algunas imágenes de las instalaciones que usamos para llevar a cabo nuestra práctica:</p>
+					Para poder llevar a cabo nuestra práctica,
+					tenemos a disposición diferentes instalaciones que nos facilitan el Ayuntamiento de nuestra ciudad.
+					Actualmente usamos dos de estas instalaciones, los pabellones Mirandilla y Naútico de Cádiz.<br><br>
+					A continuación se muestran algunas imágenes de las instalaciones en las que desarrollamos nuestra práctica:</p>
 					<div class="slider">
 						<ul>
 							<li><img src="./img/pabellon_mirandilla.jpg" alt=""></li>

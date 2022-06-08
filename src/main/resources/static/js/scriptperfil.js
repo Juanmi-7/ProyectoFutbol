@@ -4,13 +4,13 @@
 
 $( document ).ready(function() {
 	
-	let nombre_usuario = location.href.split("=")[1];
 	if (nombre_usuario=="" || nombre_usuario==null) {
-		$("#estadisticas").attr("disabled","true");
-		$("#convocatoria").attr("disabled","true");
-		$("#resultado").attr("disabled","true");
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
 	}
-	$("#nombre_usuar").html(nombre_usuario);
+	
 	$("#nombre_usuario").val(nombre_usuario);
 	
 	$.ajax({   //Comprobamos el nombre del usuario y su status
@@ -31,7 +31,7 @@ $( document ).ready(function() {
 				}
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Error de comunicación. <br><br>");
 			}
 			
 		});
@@ -40,24 +40,28 @@ $( document ).ready(function() {
 		
 		let nombre_usuario = $("#nombre_usuario").val();
 		let clave = $("#clave").val();
-		
-		$.ajax({
-			type: "POST",
-			dataType: "html",
-			url: "./ServletActualizarUsuario",
-			data: $.param({
-				nombre_usuario : nombre_usuario,
-				clave : clave
-			}),
-			success: function(result) {
-				alert("Usuario actualizado.");
-				$("#salida").text("Usuario actualizado correctamente. ");
-				let clave = $("#clave").val("");
-			},
-			error: function() {
-				$("#salida").val("Error de comunicación.");
-			}
-		});
+		if (clave=="" || clave==null || nombre_usuario=="" || nombre_usuario==null) {
+			$("#salida").html("Datos no v\u00E1lidos. <br><br>");
+		}
+		else {
+			
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "./ServletActualizarUsuario",
+				data: $.param({
+					nombre_usuario : nombre_usuario,
+					clave : clave
+				}),
+				success: function() {
+					$("#salida").html("Usuario actualizado correctamente. <br><br>");
+					$("#clave").val("");
+				},
+				error: function() {
+					$("#salida").html("Error de comunicación. <br><br>");
+				}
+			});
+		}
 		
 	});
 	
@@ -79,7 +83,8 @@ $( document ).ready(function() {
 				clave: clave
 			}),
 			success: function(result) {
-				if (result=="ok") {
+				let usuario = JSON.parse(result);
+				if (usuario.nombreUsuario==nombre_usuario) {
 					$.ajax({
 						type: "POST",
 						dataType: "html",
@@ -88,26 +93,24 @@ $( document ).ready(function() {
 							nombre_usuario : nombre_usuario,
 							clave : clave,
 						}),
-						success: function(result) {
-							alert("Usuario eliminado.");
-							$("#salida").text(result);
+						success: function() {
+							$("#salida").html("Usuario eliminado. <br><br>");
 							$("#nombre_usuar").html("");
-							var nombre_usuario = $("#nombre_usuario").val("");
-							var clave = $("#clave").val("");
+							$("#nombre_usuario").val("");
+							$("#clave").val("");
 							document.location.href="index.html";
 						},
 						error: function() {
-							alert("Datos incorrectos.");
-							$("#salida").val("Error de comunicación.");
+							$("#salida").html("Error de comunicación. <br><br>");
 						}
 						
 					});
 				} else {
-					alert("Datos incorrectos.");
+					$("#salida").html("Datos incorrectos. <br><br>");
 				}
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Datos incorrectos. <br><br>");
 			}
 		});
 			

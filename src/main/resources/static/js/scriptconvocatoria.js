@@ -4,13 +4,12 @@
 
 $( document ).ready(function() {
 	
-	let nombre_usuario = location.href.split("=")[1];
 	if (nombre_usuario=="" || nombre_usuario==null) {
-		$("#estadisticas").attr("disabled","true");
-		$("#convocatoria").attr("disabled","true");
-		$("#resultado").attr("disabled","true");
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
 	}
-	$("#nombre_usuar").html(nombre_usuario);
 	
 	$.ajax({   //Comprobamos el nombre del usuario y su status
 	
@@ -112,7 +111,7 @@ $( document ).ready(function() {
 				
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Error de comunicación. <br><br>");
 			}
 		
 	});
@@ -138,7 +137,7 @@ $( document ).ready(function() {
 			}
 		},
 		error: function() {
-			$("#salida").val("Error de comunicación.");
+			$("#salida").html("Error de comunicación. <br><br>");
 		}
 		
 	});
@@ -205,11 +204,11 @@ $( document ).ready(function() {
 							jugador : jugador,
 							dia : fecha
 						}),
-						success: function(result) {
-							$("#salida").text(result);
+						success: function() {
+							$("#salida").html("Convocatoria enviada. <br><br>");
 						},
 						error: function() {
-							$("#salida").val("Error de comunicación.");
+							$("#salida").html("Error de comunicación. <br><br>");
 						}
 					
 					});
@@ -225,9 +224,9 @@ $( document ).ready(function() {
 		//alert(lista_seleccionados);
 		//alert(ya_convocado);
 		if (ya_convocado == 1) {
-			alert("Alg\u00FAn jugador de los seleccionados ya estaba convocado anteriorente.");
+			$("#salida").html("Alg\u00FAn jugador de los seleccionados ya estaba convocado anteriorente. <br><br>");
 		}
-		alert("Convocatoria enviada.");
+		$("#salida").html("Convocatoria enviada. <br><br>");
 		location.reload();   //Recargamos la página
 		
 	});
@@ -250,21 +249,20 @@ $( document ).ready(function() {
 				data: $.param({
 					dia : fecha
 				}),
-				success: function(result) {
+				success: function() {
 					for (let i=0; i<lista_convocados.length; i++) {
 						jugador=lista_convocados[i];
 						//alert(jugador);
 						$("#campo").append("<div>"+jugador+"</div><br>");
 					}
-					$("#salida").text(result);
 				},
 				error: function() {
-					$("#salida").val("Error de comunicación.");
+					$("#salida").html("Error de comunicación. <br><br>");
 				}
 			
 			});
 			
-			alert("Convocatoria eliminada.");
+			$("#salida").html("Convocatoria eliminada. <br><br>");
 			location.reload();   //Recargamos la página
 			
 		}

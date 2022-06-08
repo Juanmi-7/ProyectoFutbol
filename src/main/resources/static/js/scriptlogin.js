@@ -4,38 +4,53 @@
 
 $( document ).ready(function() {
 	
-	$("#estadisticas").attr("disabled","true");
-	$("#convocatoria").attr("disabled","true");
-	$("#resultado").attr("disabled","true");
+	if (nombre_usuario=="" || nombre_usuario==null) {
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
+	}
 	
 	$("#acceder").click(function() {
 		
 		let nombre_usuario = $("#nombre_usuario").val();
 		let clave = $("#clave").val();
+		if (clave=="" || clave==null || nombre_usuario=="" || nombre_usuario==null) {
+			$("#salida").html("Datos no v\u00E1lidos. <br><br>");
+		}
+		else {
 		
-		$.ajax({
-			type: "POST",
-			dataType: "html",
-			url: "./ServletBuscarUsuario",
-			data: $.param({
-				nombre_usuario: nombre_usuario,
-				clave: clave
-			}),
-			success: function(result) {
-				let usuario = JSON.parse(result);
-				if (nombre_usuario==usuario.nombreUsuario && clave==usuario.clave) {
-					let nombre_usuario = $("#nombre_usuario").val();
-					document.location.href="index.html?usuario="+nombre_usuario;
-				} else {
-					alert("Usuario no encontrado.");
-					let nombre_usuario = $("#nombre_usuario").val("");
-					let clave = $("#clave").val("");
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "./Login",
+				data: $.param({
+					nombre_usuario: nombre_usuario,
+					clave: clave
+				}),
+				success: function(result) {
+					let token_json = JSON.parse(result);
+					let cookies = document.cookie.split(";");
+					for (let i = 0; i < cookies.length; i++) {
+						let cookie = cookies[i];
+						let eqPos = cookie.indexOf("=");
+						let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+						document.cookie = name + "=;expires=" + new Date().toUTCString();
+					}
+					let date = new Date();
+					date.setDate(date.getDate() + 1);
+					let expires = "; expires=" + date.toGMTString();
+					document.cookie = "token="+token_json.token + expires;
+					document.location.href="index.html";
+				},
+				error: function() {
+					$("#salida").html("Usuario no encontrado. Introduzca los datos correctamente. <br><br>");
+					$("#nombre_usuario").val("");
+					$("#clave").val("");
 				}
-			},
-			error: function() {
-				$("#salida").val("Error de comunicación.");
-			}
-		});
+			});
+		
+		}
 		
 	});
 	

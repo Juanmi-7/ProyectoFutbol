@@ -4,13 +4,15 @@
 
 $( document ).ready(function() {
 	
-	let nombre_usuario = location.href.split("=")[1];
+	alert(nombre_usuario);
+	
 	if (nombre_usuario=="" || nombre_usuario==null) {
-		$("#estadisticas").attr("disabled","true");
-		$("#convocatoria").attr("disabled","true");
-		$("#resultado").attr("disabled","true");
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
 	}
-	$("#nombre_usuar").html(nombre_usuario);
+	
 	let body = $("#tbody");
 	
 	$.ajax({   //Comprobamos el nombre del usuario y su status
@@ -28,14 +30,14 @@ $( document ).ready(function() {
 				if (usuarios[i].nombreUsuario==nombre_usuario) {
 					$("#nombre_usuar").html(nombre_usuario + " (" + usuarios[i].status + ")");
 					//alert(usuarios[i].status);
-					if (usuarios[i].status!="admin") {   //Si el usuario no es admin, desabilitamos el botón de añadir resultado
-						$("#btn_anadir").attr("disabled","true");
+					if (usuarios[i].status=="admin") {   //Si el usuario es admin, mostramos los botones para añadir resultados
+						$("#ana_partidos").attr("style","display: block; text-align: center");
 					}
 				}
 			}
 		},
 		error: function() {
-			$("#salida").val("Error de comunicación.");
+			$("#salida").html("Error de comunicación. <br><br>");
 		}
 		
 	});
@@ -89,7 +91,7 @@ $( document ).ready(function() {
 									jugador : jugador,
 								}),
 								error: function() {
-									$("#salida").val("Error de comunicación.");
+									$("#salida").html("Error de comunicación. <br><br>");
 								}
 							});
 						}
@@ -97,14 +99,14 @@ $( document ).ready(function() {
 					
 				},
 				error: function() {
-					$("#salida").val("Error de comunicación.");
+					$("#salida").html("Error de comunicación. <br><br>");
 				}
 				
 			});
 			
 		},
 		error: function() {
-			$("#salida").val("Error de comunicación.");
+			$("#salida").html("Error de comunicación. <br><br>");
 		}
 				
 	});
@@ -171,7 +173,7 @@ $( document ).ready(function() {
 			
 		},
 		error: function() {
-			$("#salida").val("Error de comunicación.");
+			$("#salida").html("Error de comunicación. <br><br>");
 		}
 			
 	});
@@ -284,7 +286,7 @@ $( document ).ready(function() {
 									asistencias : asistencias
 								}),
 								error: function() {
-									$("#salida").val("Error de comunicación.");
+									$("#salida").html("Error de comunicación. <br><br>");
 								}
 							});
 							
@@ -299,19 +301,19 @@ $( document ).ready(function() {
 									puntos : puntos
 								}),
 								error: function() {
-									$("#salida").val("Error de comunicación.");
+									$("#salida").html("Error de comunicación. <br><br>");
 								}
 							});
 							
 						}
-						alert("Datos enviados correctamente.");
+						$("#salida").html("Datos enviados correctamente. <br><br>");
 						document.location.reload();
 					}
 				});
 				
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Error de comunicación. <br><br>");
 			}
 		
 		});

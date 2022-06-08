@@ -4,13 +4,13 @@
 
 $( document ).ready(function() {
 	
-	let nombre_usuario = location.href.split("=")[1];
 	if (nombre_usuario=="" || nombre_usuario==null) {
-		$("#estadisticas").attr("disabled","true");
-		$("#convocatoria").attr("disabled","true");
-		$("#resultado").attr("disabled","true");
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
 	}
-	$("#nombre_usuar").html(nombre_usuario);
+	
 	let body = $("#tbody");
 	let hoy = new Date();
 	let prox_dia = new Date();
@@ -37,15 +37,14 @@ $( document ).ready(function() {
 					if (usuarios[i].nombreUsuario==nombre_usuario) {
 						$("#nombre_usuar").html(nombre_usuario + " (" + usuarios[i].status + ")");
 						//alert(usuarios[i].status);
-						if (usuarios[i].status!="admin") {   //Si el usuario no es admin, desabilitamos los botones de añadir y eliminar jugador
-							$("#btn_anadir").attr("disabled","true");
-							$("#btn_eliminar").attr("disabled","true");
+						if (usuarios[i].status=="admin") {   //Si el usuario es admin, mostramos los botones para añadir/eliminar jugadores
+							$("#ana_eli_jug").attr("style","display: block; text-align: center");
 						}
 					}
 				}
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Error de comunicación. <br><br>");
 			}
 			
 		});
@@ -78,7 +77,7 @@ $( document ).ready(function() {
 			}
 		},
 		error: function() {
-			$("#salida").val("Error de comunicación.");
+			$("#salida").html("Error de comunicación. <br><br>");
 		}
 			
 	});
@@ -104,13 +103,12 @@ $( document ).ready(function() {
 				nombre : nombre,
 				fechnac : fechnac
 			}),
-			success: function(result) {
-				alert("Jugador agregado correctamente.");
-				$("#salida").text(result);
-				document.location.href="estadisticas.html?usuario="+nombre_usuario;
+			success: function() {
+				$("#salida").html("Jugador registrado correctamente. <br><br>");
+				location.reload();   //Recargamos la página
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Error de comunicación. <br><br>");
 			}
 			
 		});
@@ -149,13 +147,12 @@ $( document ).ready(function() {
 				data: $.param({
 					nombre : nombre
 				}),
-				success: function(result) {
-					alert("Jugador eliminado correctamente.");
-					$("#salida").text(result);
-					document.location.href="estadisticas.html?usuario="+nombre_usuario;
+				success: function() {
+					$("#salida").html("Jugador eliminado correctamente. <br><br>");
+					location.reload();   //Recargamos la página
 				},
 				error: function() {
-					$("#salida").val("Error de comunicación.");
+					$("#salida").html("Error de comunicación. <br><br>");
 				}
 				
 			});

@@ -4,13 +4,12 @@
 
 $( document ).ready(function() {
 	
-	let nombre_usuario = location.href.split("=")[1];
 	if (nombre_usuario=="" || nombre_usuario==null) {
-		$("#estadisticas").attr("disabled","true");
-		$("#convocatoria").attr("disabled","true");
-		$("#resultado").attr("disabled","true");
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
 	}
-	$("#nombre_usuar").html(nombre_usuario);
 	
 	$.ajax({   //Comprobamos el nombre del usuario y su status
 	
@@ -21,7 +20,6 @@ $( document ).ready(function() {
 				nombre_usuario: nombre_usuario,
 			}),
 			success: function(result) {
-			
 				let usuarios = JSON.parse(result);
 				for (let i=0; i<usuarios.length; i++) {
 					if (usuarios[i].nombreUsuario==nombre_usuario) {
@@ -30,7 +28,7 @@ $( document ).ready(function() {
 				}
 			},
 			error: function() {
-				$("#salida").val("Error de comunicación.");
+				$("#salida").html("Error de comunicación.  <br><br>");
 			}
 			
 		});

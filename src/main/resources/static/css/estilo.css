@@ -1,4 +1,4 @@
-/*-----Genérico-----*/
+/*----------Genérico----------*/
 
 html {
 	font-family: Arial, Helvetica, sans-serif;
@@ -138,7 +138,7 @@ table:hover td[rowspan], tr:hover td {
 	color: #339;
 }
 
-/*-----Encabezado-----*/
+/*----------Encabezado----------*/
 
 header {
 	display: flex;
@@ -160,7 +160,7 @@ h1 {
 	border: 0;
 }
 
-/*-----Menu de navegacion-----*/
+/*----------Menu de navegacion----------*/
 
 #menu_navegacion {
 	margin: 0;
@@ -255,14 +255,14 @@ h1 {
 	margin-left: -1px;
 }
 
-/*-----Cuerpo-----*/
+/*----------Cuerpo----------*/
 
 main {
 	margin: 0;
 }
 
 #contenedor {
-	padding: 32px;
+	padding: 50px;
 	background-color: #808080;
 }
 
@@ -279,7 +279,7 @@ main {
 }
 
 .contenido_tarjeta {
-	padding: 10px 58px;
+	padding: 10px 50px;
 }
 
 #nombre_usuar {
@@ -289,7 +289,7 @@ main {
 	/*-----Slider-----*/
 
 	.slider {
-		width: 95%;
+		width: 80%;
 		margin: auto;
 		overflow: hidden;
 	}
@@ -334,6 +334,10 @@ main {
 
 #entrada {
 	color: #039;
+}
+
+#salida {
+	color: red;
 }
 
 	/*-----Campo-----*/
@@ -428,7 +432,7 @@ main {
 	color: blue;
 }
 
-/*-----Footer-----*/
+/*----------Footer----------*/
 
 footer {
 	bottom: 0;
@@ -465,7 +469,7 @@ footer {
 	display: block;
 }
 
-/*-----Modo oscuro-----*/
+/*----------Modo oscuro----------*/
 
 .oscuro {
 	background-color: black!important;
@@ -497,7 +501,7 @@ footer {
 	border-top: 4px solid #808080;
 }
 
-/*-----Media Queries-----*/
+/*----------Media Queries----------*/
 
 @media screen and (max-width:1025px) {
 	/* big landscape tablets, laptops, and desktops */

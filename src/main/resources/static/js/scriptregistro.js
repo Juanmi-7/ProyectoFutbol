@@ -4,36 +4,55 @@
 
 $( document ).ready(function() {
 	
-	$("#estadisticas").attr("disabled","true");
-	$("#convocatoria").attr("disabled","true");
-	$("#resultado").attr("disabled","true");
+	if (nombre_usuario=="" || nombre_usuario==null) {
+		$("#estadisticas").attr('style', 'display:none');
+		$("#convocatoria").attr('style', 'display:none');
+		$("#resultado").attr('style', 'display:none');
+		$("#perfil").attr('style', 'display:none');
+	}
 	
 	$("#registrar").click(function() {
 		
 		let nombre_usuario = $("#nombre_usuario").val();
 		let clave = $("#clave").val();
 		let status = $("#status").val();
+		if (clave=="" || clave==null || nombre_usuario=="" || nombre_usuario==null) {
+			$("#salida").html("Datos no v\u00E1lidos. <br><br>");
+		}
+		else {
 		
-		$.ajax({
-		
-			type: "POST",
-			dataType: "html",
-			url: "./ServletRegistrarUsuario",
-			data: $.param({
-				nombre_usuario : nombre_usuario,
-				clave : clave,
-				status : status
-			}),
-			success: function(result) {
-				alert("Usuario registrado correctamente.");
-				$("#salida").text(result);
-				document.location.href="index.html?usuario="+nombre_usuario;
-			},
-			error: function() {
-				$("#salida").val("Error de comunicación.");
-			}
+			$.ajax({
 			
-		});
+				type: "POST",
+				dataType: "html",
+				url: "./ServletRegistrarUsuario",
+				data: $.param({
+					nombre_usuario : nombre_usuario,
+					clave : clave,
+					status : status
+				}),
+				success: function(result) {
+					let token_json = JSON.parse(result);
+					let cookies = document.cookie.split(";");
+					for (let i = 0; i < cookies.length; i++) {
+						let cookie = cookies[i];
+						let eqPos = cookie.indexOf("=");
+						let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+						document.cookie = name + "=;expires=" + new Date().toUTCString();
+					}
+					let date = new Date();
+					date.setDate(date.getDate() + 1);
+					let expires = "; expires=" + date.toGMTString();
+					document.cookie = "token="+token_json.token + expires;
+					document.location.href="index.html";
+				},
+				error: function() {
+					$("#salida").html("Error de comunicación. <br><br>");
+				}
+				
+			});
+		
+		}
 		
 	});
 	

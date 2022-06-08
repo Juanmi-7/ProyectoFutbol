@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,14 +22,14 @@ public class Usuario {
 	private String clave;
 	private String status;
 	
-	public Usuario(String nombreUsuario, String clave, String status) {
-		this.nombreUsuario = nombreUsuario;
-		this.clave = clave;
-		this.status = status;
-	}
-	
 	public Usuario() {
 		
+	}
+	
+	public Usuario(String nombreUsuario, String clave, String status) {
+		this.nombreUsuario = nombreUsuario;
+		this.clave = new BCryptPasswordEncoder().encode(clave);
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -51,7 +53,7 @@ public class Usuario {
 	}
 
 	public void setClave(String clave) {
-		this.clave = clave;
+		this.clave = new BCryptPasswordEncoder().encode(clave);
 	}
 
 	public String getStatus() {
