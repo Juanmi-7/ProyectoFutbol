@@ -4,8 +4,6 @@
 
 $( document ).ready(function() {
 	
-	alert(nombre_usuario);
-	
 	if (nombre_usuario=="" || nombre_usuario==null) {
 		$("#estadisticas").attr('style', 'display:none');
 		$("#convocatoria").attr('style', 'display:none');
