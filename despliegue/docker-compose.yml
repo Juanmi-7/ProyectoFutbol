@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  # Contenedor Spring Boot
+  servidor:
+    build: app/.
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  # Contenedor base de datos
+  db:
+    build: db/.
+    ports:
+      - "3306:3306"
+    # Configura la base de datos para coincidir con la aplicación
+    environment:
+      MYSQL_DATABASE: cdgenoves
+      MYSQL_USER: genoveso
+      MYSQL_PASSWORD: pestillo
+      MYSQL_ROOT_PASSWORD: pestillo
