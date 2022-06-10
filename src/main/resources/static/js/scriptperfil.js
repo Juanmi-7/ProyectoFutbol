@@ -118,6 +118,20 @@ $( document ).ready(function() {
 		
 	});
 	
+	$("#logout").click(function() {   //Botón para cerrar sesión
+		
+		let cookies = document.cookie.split(";");
+		for (let i = 0; i < cookies.length; i++) {
+			let cookie = cookies[i];
+			let eqPos = cookie.indexOf("=");
+			let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+			document.cookie = name + "=;expires=" + new Date().toUTCString();
+		}
+		document.cookie = "token=";
+		document.location.href="index.html";
+		
+	});
+	
 	$("#login").click(function() {   //Botón para enlazar páginas
 		
 		document.location.href="login.html";
