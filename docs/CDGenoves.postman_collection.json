@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "a1d2c49b-0023-4156-b032-fe3fd629244b",
+		"name": "CDGenoves",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Convocatoria",
+			"item": [
+				{
+					"name": "Cargar Convocatoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServletCargarConvocatoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletCargarConvocatoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Convocatoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletInsertarConvocatoria?numero_partido=20&jugador=Juanmi&fecha=2026-02-12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletInsertarConvocatoria"
+							],
+							"query": [
+								{
+									"key": "numero_partido",
+									"value": "20"
+								},
+								{
+									"key": "jugador",
+									"value": "Juanmi"
+								},
+								{
+									"key": "fecha",
+									"value": "2026-02-12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Convocatoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletEliminarConvocatoria?fecha=2026-02-12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletEliminarConvocatoria"
+							],
+							"query": [
+								{
+									"key": "fecha",
+									"value": "2026-02-12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jugadores",
+			"item": [
+				{
+					"name": "Cargar Jugadores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServletCargarJugadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletCargarJugadores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Jugadores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletActualizarJugadores?nombre=Paco&goles=5&asistencias=5&puntos=15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletActualizarJugadores"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Paco"
+								},
+								{
+									"key": "goles",
+									"value": "5"
+								},
+								{
+									"key": "asistencias",
+									"value": "5"
+								},
+								{
+									"key": "puntos",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Jugadores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJDREdlbm92ZXMiLCJzdWIiOiJKdWFubWkiLCJhdXRob3JpdGllcyI6ImFkbWluIiwiaWF0IjoxNjU0ODQxODc1LCJleHAiOjE2NTQ4NDc4NzV9.sxQlbv-upHZmbQat8zRDxTcrnEynWz2wTpf23ZfWwgYcrGo4Zr9fMFF8m7ydg45xb9JvlkFxVCGFDQ0MxlgMig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletInsertarJugadores?nombre=Pepe&fechnac=2000-02-12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletInsertarJugadores"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Pepe"
+								},
+								{
+									"key": "fechnac",
+									"value": "2000-02-12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Jugadores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJDREdlbm92ZXMiLCJzdWIiOiJKdWFubWkiLCJhdXRob3JpdGllcyI6ImFkbWluIiwiaWF0IjoxNjU0ODQxODc1LCJleHAiOjE2NTQ4NDc4NzV9.sxQlbv-upHZmbQat8zRDxTcrnEynWz2wTpf23ZfWwgYcrGo4Zr9fMFF8m7ydg45xb9JvlkFxVCGFDQ0MxlgMig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletEliminarJugadores?nombre=Pepe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletEliminarJugadores"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Pepe"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Partidos",
+			"item": [
+				{
+					"name": "Cargar Partidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServletCargarPartidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletCargarPartidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Partidos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJDREdlbm92ZXMiLCJzdWIiOiJKdWFubWkiLCJhdXRob3JpdGllcyI6ImFkbWluIiwiaWF0IjoxNjU0ODQxODc1LCJleHAiOjE2NTQ4NDc4NzV9.sxQlbv-upHZmbQat8zRDxTcrnEynWz2wTpf23ZfWwgYcrGo4Zr9fMFF8m7ydg45xb9JvlkFxVCGFDQ0MxlgMig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletActualizarPartidos?numero_partido=30&jugador=Juanmi&goles=5&asistencias=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletActualizarPartidos"
+							],
+							"query": [
+								{
+									"key": "numero_partido",
+									"value": "30"
+								},
+								{
+									"key": "jugador",
+									"value": "Juanmi"
+								},
+								{
+									"key": "goles",
+									"value": "5"
+								},
+								{
+									"key": "asistencias",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Partidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletInsertarPartidos?numero_partido=30&jugador=Juanmi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletInsertarPartidos"
+							],
+							"query": [
+								{
+									"key": "numero_partido",
+									"value": "30"
+								},
+								{
+									"key": "jugador",
+									"value": "Juanmi"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Cargar Usuarios",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ServletCargarUsuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletCargarUsuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletBuscarUsuario?nombre_usuario=Luis&clave=luis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletBuscarUsuario"
+							],
+							"query": [
+								{
+									"key": "nombre_usuario",
+									"value": "Luis"
+								},
+								{
+									"key": "clave",
+									"value": "luis"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletActualizarUsuario?nombre_usuario=Luis&clave=luis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletActualizarUsuario"
+							],
+							"query": [
+								{
+									"key": "nombre_usuario",
+									"value": "Luis"
+								},
+								{
+									"key": "clave",
+									"value": "luis"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletRegistrarUsuario?nombre_usuario=Pepe&clave=pepe&status=user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletRegistrarUsuario"
+							],
+							"query": [
+								{
+									"key": "nombre_usuario",
+									"value": "Pepe"
+								},
+								{
+									"key": "clave",
+									"value": "pepe"
+								},
+								{
+									"key": "status",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/ServletEliminarUsuario?nombre_usuario=Pepe&clave=pepe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ServletEliminarUsuario"
+							],
+							"query": [
+								{
+									"key": "nombre_usuario",
+									"value": "Pepe"
+								},
+								{
+									"key": "clave",
+									"value": "pepe"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Login?nombre_usuario=Juanmi&clave=worren",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Login"
+							],
+							"query": [
+								{
+									"key": "nombre_usuario",
+									"value": "Juanmi"
+								},
+								{
+									"key": "clave",
+									"value": "worren"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
